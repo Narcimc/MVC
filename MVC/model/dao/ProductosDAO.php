@@ -44,14 +44,15 @@ class ProductosDAO {
     public function insert($prod){//si no se quiere usar un objeto se tendria que enviar cada dato
         try{
         //sentencia sql
-        $sql = "INSERT INTO productos ( prod_nombre,  prod_estado, prod_precio, 
+        $sql = "INSERT INTO productos ( prod_nombre, descripcion_prod , prod_estado, prod_precio, 
         prod_idCategoria, prod_usuarioActualizacion, prod_fechaActualizacion) VALUES 
-        ( :nom, :estado, :precio, :idCat, :usu, :fecha)"; //se validan los datos a enviar 
+        ( :nom, :descripcion , :estado, :precio, :idCat, :usu, :fecha)"; //se validan los datos a enviar 
 
         //bind parameters
         $sentencia = $this->con->prepare($sql);
         $data = array( //aqui no importa el orden de los parametros porque antes ya fueron enviados
         'nom' =>  $prod->getNombre(),
+        'descripcion' => $prod->getDescripcion(),
         'estado' =>  $prod->getEstado(),
         'precio' =>  $prod->getPrecio(),
         'idCat' =>  $prod->getIdCategoria(),
@@ -78,12 +79,14 @@ class ProductosDAO {
         try{
             //prepare
             $sql = "UPDATE productos SET prod_nombre=:nom," .
+                    "descripcion_prod=:descripcion,".
                     "prod_estado=:estado,prod_precio=:precio,prod_idCategoria=:idCat,prod_usuarioActualizacion=:usu," .
                     "prod_fechaActualizacion=:fecha WHERE prod_id=:id";
            //bind parameters
             $sentencia = $this->con->prepare($sql);
             $data = array(
                'nom' =>  $prod->getNombre(),
+               'descripcion' => $prod->getDescripcion(),
                 'estado' =>  $prod->getEstado(),
                 'precio' =>  $prod->getPrecio(),
                 'idCat' =>  $prod->getIdCategoria(),
@@ -132,6 +135,6 @@ class ProductosDAO {
     
         return true;
     }
-    
+
     
 }

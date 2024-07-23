@@ -1,22 +1,22 @@
 <?php
-require_once 'model/dao/ProductosDAO.php';
+require_once 'model/dao/ProductosDAO.php'; //es como usar un import
 require_once 'model/dao/CategoriasDAO.php';
 require_once 'model/dto/Producto.php';
 
 class ProductosController {
-    private $model;
+    private $model;//es normal usar el modelo
     
     public function __construct() {// constructor
-        $this->model = new ProductosDAO();
+        $this->model = new ProductosDAO();//el modelo que necesita productosController
     }
 
     // funciones del controlador
     public function index() { 
       //comunica con el modelo (enviar datos o obtener datos)
-      $resultados = $this->model->selectAll("");
+      $resultados = $this->model->selectAll("");//traer todos los productos 
       // comunicarnos a la vista
       $titulo="Buscar productos";
-      require_once VPRODUCTOS.'list.php';  
+      require_once VPRODUCTOS.'list.php';  //llama a la vista de los productos es como llamar a el codigo
     }
 
     public function search(){
@@ -34,7 +34,7 @@ class ProductosController {
     public function view_new(){
           //comunicarse con el modelo
          $modeloCat = new CategoriasDAO();
-       $categorias = $modeloCat->selectAll();
+         $categorias = $modeloCat->selectAll();
 
           // comunicarse con la vista
           $titulo="Nuevo producto";
@@ -47,10 +47,13 @@ class ProductosController {
       //cuando la solicitud es por post
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {// insertar el producto
           // considerar verificaciones
-          if(empty($_POST['nombre'])){   header('Location:index.php?c=Productos&f=index'); }
+          if(empty($_POST['nombre'])){   
+            $_SESSION["mensaje"]="No se completpo todos los datos";
+            header('Location:index.php?c=Productos&f=index'); }
           $prod = new Producto(); // dto
           // lectura de parametros
           $prod->setNombre(htmlentities($_POST['nombre']));
+          $prod->setDescripcion(htmlentities($_POST['descripcion']));
           $prod->setPrecio(htmlentities($_POST['precio']));
           $prod->setIdCategoria(htmlentities($_POST['categoria']));
           $estado = (isset($_POST['estado'])) ? 1 : 0; // ejemplo de dato no obligatorio

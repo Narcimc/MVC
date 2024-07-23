@@ -23,6 +23,7 @@
         <table class="table table-striped table-bordered">
             <thead class="thead-dark">
              <th>Nombre </th>
+             <th>Descripción </th>
             <th>Categoría </th>
             <th>Precio </th>
             <th>Estado </th>
@@ -34,6 +35,7 @@
                   ?>
                 <tr>
                     <td><?php echo $fila['prod_nombre'];?></td>
+                    <td><?php echo $fila['descripcion_prod'];?></td>
                     <td><?php echo $fila['cat_nombre'];?></td>
                     <td><?php echo $fila['prod_precio'];?></td>
                     <td><?php echo $fila['prod_estado'];?></td>

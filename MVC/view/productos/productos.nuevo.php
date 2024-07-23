@@ -11,6 +11,10 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="nombre producto" required>
                 </div>
+                <div class="form-group col-sm-6">
+                    <label for="nombre">descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion producto" required>
+                </div>
 
                 <div class="form-group col-sm-6">
                     <label for="categoria">Categoria</label>

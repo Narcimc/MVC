@@ -2,7 +2,7 @@
 // dto data transfer object
 class Producto {
     //properties
-    private $id, $nombre, $estado, $precio, 
+    private $id, $nombre, $estado,$descripcion, $precio, 
     $idCategoria, $usuario, $fechaActualizacion;
 
     function __construct() {
@@ -21,6 +21,10 @@ class Producto {
 
     function getEstado() {
         return $this->estado;
+    }
+    
+    function getDescripcion() {
+        return $this->descripcion;
     }
 
     function getPrecio() {
@@ -51,6 +55,10 @@ class Producto {
   
     function setEstado($estado) {
         $this->estado = $estado;
+    }
+    
+    function setDescripcion($descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     function setPrecio($precio) {
